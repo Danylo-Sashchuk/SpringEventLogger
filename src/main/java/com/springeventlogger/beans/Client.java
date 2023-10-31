@@ -1,4 +1,4 @@
-package com.springeventlogger;
+package com.springeventlogger.beans;
 
 /**
  * Danylo Sashchuk <p>
