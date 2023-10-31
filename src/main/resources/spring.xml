@@ -10,7 +10,9 @@
         <constructor-arg value="John Smith"/>
     </bean>
 
-    <bean id="eventLogger" class="com.springeventlogger.loggers.ConsoleEventLogger"/>
+    <bean id="eventLogger" class="com.springeventlogger.loggers.FileEventLogger">
+        <property name="fileName" value="yourLogFile.log"/>
+    </bean>
 
     <bean id="app" class="com.springeventlogger.beans.App">
         <constructor-arg ref="client"/>
@@ -25,5 +27,4 @@
     </bean>
 
     <bean id="dateFormat" class="java.text.DateFormat" factory-method="getDateTimeInstance"/>
-
 </beans>
