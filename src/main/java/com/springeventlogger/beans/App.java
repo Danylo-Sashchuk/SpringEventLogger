@@ -2,6 +2,7 @@ package com.springeventlogger.beans;
 
 import com.springeventlogger.loggers.EventLogger;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
@@ -19,13 +20,15 @@ public class App {
     }
 
     public static void main(String[] args) {
-        ApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
+        ConfigurableApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
         App app = ctx.getBean("app", App.class);
 
         Event event = ctx.getBean(Event.class);
         app.logEvent(event, "Some event for 1");
         event = (Event) ctx.getBean("event");
         app.logEvent(event, "Some event for 2");
+
+        ctx.close();
     }
 
     public void logEvent(Event event, String msg) {

@@ -2,7 +2,6 @@ package com.springeventlogger.loggers;
 
 import com.springeventlogger.beans.Event;
 import org.apache.commons.io.FileUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.File;
 import java.io.IOException;
@@ -13,18 +12,23 @@ import java.io.IOException;
  */
 
 public class FileEventLogger implements EventLogger {
+    private File file;
     private String fileName;
+
+    public FileEventLogger(String fileName) {
+        this.fileName = fileName;
+    }
 
     @Override
     public void logEvent(Event event) {
         try {
-            FileUtils.writeStringToFile(new File(fileName), event.toString());
+            FileUtils.writeStringToFile(file, event.toString(), true);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public void setFileName(String fileName) {
-        this.fileName = fileName;
+    public void init() {
+        this.file = new File(fileName);
     }
 }

@@ -10,8 +10,10 @@
         <constructor-arg value="John Smith"/>
     </bean>
 
-    <bean id="eventLogger" class="com.springeventlogger.loggers.FileEventLogger">
-        <property name="fileName" value="yourLogFile.log"/>
+    <bean id="eventLogger" class="com.springeventlogger.loggers.CacheFileEventLogger" init-method="init"
+          destroy-method="destroy">
+        <constructor-arg value="src/main/resources/log.txt"/>
+        <constructor-arg value="5"/>
     </bean>
 
     <bean id="app" class="com.springeventlogger.beans.App">
