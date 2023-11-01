@@ -1,7 +1,6 @@
 package com.springeventlogger.beans;
 
 import com.springeventlogger.loggers.EventLogger;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 

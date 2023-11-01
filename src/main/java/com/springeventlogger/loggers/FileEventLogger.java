@@ -29,6 +29,16 @@ public class FileEventLogger implements EventLogger {
     }
 
     public void init() {
-        this.file = new File(fileName);
+        file = new File(fileName);
+        if (file.exists() && !file.canWrite()) {
+            throw new IllegalArgumentException("Can't write to file " + fileName);
+        } else if (!file.exists()) {
+            try {
+                file.createNewFile();
+            } catch (Exception e) {
+                throw new IllegalArgumentException("Can't create file", e);
+            }
+
+        }
     }
 }
